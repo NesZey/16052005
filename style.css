@@ -128,6 +128,7 @@ h1 {
 }
 
 /* Not defteri paneli */
+/* NOT DEFTERİ PANELİ */
 #note-panel {
   position: fixed;
   top: 0;
@@ -166,6 +167,7 @@ h1 {
   line-height: 1.6;
   white-space: pre-line;
 }
+
 
 /* Sağ alt panel butonları */
 #heart-buttons-panel {
