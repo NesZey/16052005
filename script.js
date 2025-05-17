@@ -24,6 +24,26 @@ const heartMessages = [
   "İyi ki doğdun!",
   "Kalbim hep seninle 💕",
   "Beraber nice yıllara!",
+  "Seni sonsuza dek seveceğim ❤️",
+  "Kalbim hep seninle atıyor 💖",
+  "Sen benim en değerli hazinemsin 💎",
+  "Sevginle hayatım güzelleşiyor 🌸",
+  "Seninle her an bir mucize 🌟",
+  "Aşkımız yıldızlar kadar parlak ✨",
+  "Seninle tamamlanıyorum 💞",
+  "Seni düşündükçe gülümsüyorum 😊",
+  "Kalbimin en tatlı melodisi sensin 🎶",
+  "Birlikte her şey mümkün ❤️‍🔥",
+  "Sen benim en güzel rüyamsın 🌙",
+  "Sevginle güç buluyorum 💪",
+  "Seninle hayat bir masal gibi 📖",
+  "Kalbim sana ait 💘",
+  "Sonsuzluğa birlikte yürüyelim 🚶‍♂️🚶‍♀️",
+  "Sen benim huzurumsun 🕊️",
+  "Aşkımızı kimse silemez 🛡️",
+  "Seninle hayatım tamamlandı 🎯",
+  "Kalbim hep senin yanında 💗",
+  "Sen benim en güzel baharımsın 🌷"
 ];
 
 function createHeart() {
@@ -73,9 +93,12 @@ function hideNote() {
 
 // Büyük Balonlar
 const balloonTexts = [
-  "Seninle her günüm bayram gibi 🎈",
-  "Gözlerin en sevdiğim manzara 💘",
-  "Bu kalp sadece senin için atıyor 💓",
+  "Bugün bizim için çok özel bir gün. Hem senin doğum günün hem de tam 1 yıldır hayatımda olduğun, birlikte yürüdüğümüz o güzel yolculuğun başlangıç yıldönümü. Sana nasıl teşekkür etsem, hangi kelimelerle sevgimi anlatsam bilmiyorum. Hayatıma girdiğin o ilk günden beri her şey daha renkli, daha anlamlı ve daha huzurlu. Senin gülüşünle sabahlarım aydınlanıyor, sesinle günüm güzelleşiyor. Varlığın bana güven veriyor, kalbime dokunduğun her an içimi sımsıcak bir sevgi sarıyor ❤. Bazen sadece yanımda olman bile yetiyor iyi hissetmeme. Seninle geçirdiğim her dakika, her an, benim için bir ömre bedel. Birlikte güldük, birlikte sustuk, birlikte büyüdük. Seninle bir yıl geçmiş ama sanki bir ömür gibi dolu dolu, anlamlı ve gerçekti. Seninle nice senelere ulaşmak, hayalini kurduğumuz o geleceği adım adım inşa etmek istiyorum. Doğum günün kutlu olsun aşkım, iyi ki doğdun, iyi ki varsın, iyi ki benimlesin ❤. Seni her şeyden çok seviyorum.
+",
+  "Seninle geçirdiğim bu bir yıl, bana gerçek sevgiyi, sadakati ve huzuru öğretti. Her tartışmamızda bile daha çok bağlandım sana, her gülüşünde bir kez daha âşık oldum. Bana gösterdiğin sabır, verdiğin sevgi, kurduğun o güvenli alan için sonsuz teşekkür ederim. Seninle geçirdiğim zamanlarda kendimi daha çok tanıdım, seninle birlikte kendimi de sevmeyi öğrendim. Kalbimin en derin yerinde taşıyorum seni, öyle bir yer ki kimse dokunamaz, kimse silemez. Hayat bazen zor, bazen yorucu, ama sen yanımdayken her şey kolay geliyor 🍯. Omzuna yaslandığımda dünyanın tüm yükü hafifliyor, gözlerinin içine baktığımda geleceği görüyorum. Ve inan bana, seninle kurduğum hayallerin bir tanesinden bile vazgeçmeye hiç niyetim yok. Ne yaşarsak yaşayalım, ben hep senin yanında olacağım; elini tuttuğum ilk gün verdiğim sözü tutacağım: seni hep seveceğim, koruyacağım, destekleyeceğim ❤.
+",
+  "Sen sadece sevgilim değil, aynı zamanda en yakın dostum, sırdaşım, hayat ortağımsın. Birlikte öğrendik birbirimizi sevmeyi, anlamayı, sarılmayı. Senin gözlerindeki ışığı gördüğümde kendimi en doğru yerde hissediyorum. İyi ki seni tanımışım, iyi ki kalbimde sana yer açmışım. Bu yıl dönümümüz ve doğum günün, bizim için bir başlangıç sadece. Daha yaşayacak o kadar çok anımız, paylaşacak o kadar çok gülüşümüz var ki. Seninle her geçen gün biraz daha tamamlanıyorum. Seni çok seviyorum ve her geçen gün daha da çok seveceğim ❤.
+",
 ];
 
 function showBigBalloon(index) {
