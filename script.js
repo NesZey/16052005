@@ -19,11 +19,11 @@ function changeMusic() {
 }
 
 // Kalpli Baloncuklar
-const heartMessages = [
-  "Seni seviyorum 💖",
-  "İyi ki doğdun!",
-  "Kalbim hep seninle 💕",
-  "Beraber nice yıllara!",
+const loveBubblesContainer = document.createElement('div');
+loveBubblesContainer.id = 'loveBubblesContainer';
+document.body.appendChild(loveBubblesContainer);
+
+const loveMessages = [
   "Seni sonsuza dek seveceğim ❤️",
   "Kalbim hep seninle atıyor 💖",
   "Sen benim en değerli hazinemsin 💎",
@@ -43,23 +43,40 @@ const heartMessages = [
   "Aşkımızı kimse silemez 🛡️",
   "Seninle hayatım tamamlandı 🎯",
   "Kalbim hep senin yanında 💗",
-  "Sen benim en güzel baharımsın 🌷",
+  "Sen benim en güzel baharımsın 🌷"
 ];
 
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerText = heartMessages[Math.floor(Math.random() * heartMessages.length)];
-  heart.style.left = `${Math.random() * 100}%`;
-  document.getElementById('heart-container').appendChild(heart);
+function createLoveBubble() {
+  const bubble = document.createElement('div');
+  bubble.classList.add('love-bubble');
 
+  // Rasgele sevgi mesajı seç
+  const message = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+  bubble.textContent = message;
+
+  // Ekranın kenarlarında rastgele pozisyonlar:
+  let side = Math.random() < 0.5 ? 'left' : 'right';
+  let xPercent = side === 'left' 
+    ? Math.random() * 10
+    : 90 + Math.random() * 10;
+  let yPercent = Math.random() * 90;
+
+  bubble.style.left = xPercent + '%';
+  bubble.style.top = yPercent + '%';
+
+  loveBubblesContainer.appendChild(bubble);
+
+  // 7-8 saniye sonra baloncuk kaybolsun
   setTimeout(() => {
-    heart.remove();
-  }, 3000);
+    bubble.classList.add('fade-out');
+    setTimeout(() => {
+      bubble.remove();
+    }, 1000);
+  }, 7000 + Math.random() * 1000);
 }
 
-setInterval(createHeart, 100);
-
+// Sürekli baloncuk çıkar (2 saniyede bir)
+setInterval(createLoveBubble, 2000);
 // Heart Style
 const style = document.createElement('style');
 style.textContent = `
