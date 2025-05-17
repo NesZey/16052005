@@ -18,111 +18,117 @@ function changeMusic() {
   player.play();
 }
 
-// Kalpli Baloncuklar
-const loveBubblesContainer = document.createElement('div');
-loveBubblesContainer.id = 'loveBubblesContainer';
-document.body.appendChild(loveBubblesContainer);
+/* █ CUSTOM AUDIO PLAYER █ */
+let currentTrack = 0;
+const audio        = document.getElementById("player");
+const playBtn      = document.getElementById("play-pause");
+const prevBtn      = document.getElementById("prev");
+const nextBtn      = document.getElementById("next");
+const progressBar  = document.getElementById("progress");
+const volumeBar    = document.getElementById("volume");
+const curTimeLabel = document.getElementById("current-time");
+const durLabel     = document.getElementById("duration");
+const trackLabel   = document.getElementById("track-name");
 
-const loveMessages = [
-  "Seni sonsuza dek seveceğim ❤️",
-  "Kalbim hep seninle atıyor 💖",
-  "Sen benim en değerli hazinemsin 💎",
-  "Sevginle hayatım güzelleşiyor 🌸",
-  "Seninle her an bir mucize 🌟",
-  "Aşkımız yıldızlar kadar parlak ✨",
-  "Seninle tamamlanıyorum 💞",
-  "Seni düşündükçe gülümsüyorum 😊",
-  "Kalbimin en tatlı melodisi sensin 🎶",
-  "Birlikte her şey mümkün ❤️‍🔥",
-  "Sen benim en güzel rüyamsın 🌙",
-  "Sevginle güç buluyorum 💪",
-  "Seninle hayat bir masal gibi 📖",
-  "Kalbim sana ait 💘",
-  "Sonsuzluğa birlikte yürüyelim 🚶‍♂️🚶‍♀️",
-  "Sen benim huzurumsun 🕊️",
-  "Aşkımızı kimse silemez 🛡️",
-  "Seninle hayatım tamamlandı 🎯",
-  "Kalbim hep senin yanında 💗",
-  "Sen benim en güzel baharımsın 🌷"
-];
+/* — yardımcı — */
+const fmt = s=> {
+  const m = Math.floor(s/60).toString();
+  const ss = Math.floor(s%60).toString().padStart(2,"0");
+  return `${m}:${ss}`;
+};
 
-function createLoveBubble() {
-  const bubble = document.createElement('div');
-  bubble.classList.add('love-bubble');
-
-  // Rasgele sevgi mesajı seç
-  const message = loveMessages[Math.floor(Math.random() * loveMessages.length)];
-  bubble.textContent = message;
-
-  // Ekranın kenarlarında rastgele pozisyonlar:
-  let side = Math.random() < 0.5 ? 'left' : 'right';
-  let xPercent = side === 'left' 
-    ? Math.random() * 10
-    : 90 + Math.random() * 10;
-  let yPercent = Math.random() * 90;
-
-  bubble.style.left = xPercent + '%';
-  bubble.style.top = yPercent + '%';
-
-  loveBubblesContainer.appendChild(bubble);
-
-  // 7-8 saniye sonra baloncuk kaybolsun
-  setTimeout(() => {
-    bubble.classList.add('fade-out');
-    setTimeout(() => {
-      bubble.remove();
-    }, 1000);
-  }, 7000 + Math.random() * 1000);
+function loadTrack(i){
+  currentTrack = i;
+  audio.src = tracks[i].src;
+  trackLabel.textContent = tracks[i].name;
+  audio.load();
 }
+loadTrack(0);
 
-// Sürekli baloncuk çıkar (2 saniyede bir)
-setInterval(createLoveBubble, 2000);
-// Heart Style
-const style = document.createElement('style');
-style.textContent = `
-.heart {
-  position: absolute;
-  top: 100%;
-  font-size: 1em;
-  background: pink;
-  padding: 5px 10px;
-  border-radius: 30px;
-  animation: floatUp 3s linear forwards;
-  white-space: nowrap;
-}
-@keyframes floatUp {
-  to {
-    top: -10%;
-    opacity: 0;
+/* Oynat / Duraklat */
+playBtn.onclick = () => {
+  if(audio.paused){
+    audio.play();
+    playBtn.textContent = "⏸";
+  }else{
+    audio.pause();
+    playBtn.textContent = "▶";
   }
-}
-`;
-document.head.appendChild(style);
+};
 
-// Not <3 Popup
-function showNote() {
-  document.getElementById('note-popup').style.display = 'block';
-}
+/* İleri / Geri */
+nextBtn.onclick = ()=>{ loadTrack((currentTrack+1)%tracks.length); audio.play(); playBtn.textContent="⏸"; };
+prevBtn.onclick = ()=>{ loadTrack((currentTrack-1+tracks.length)%tracks.length); audio.play(); playBtn.textContent="⏸"; };
 
-function hideNote() {
-  document.getElementById('note-popup').style.display = 'none';
-}
+/* Ses */
+volumeBar.oninput = e => audio.volume = e.target.value;
 
-// Büyük Balonlar
-const balloonTexts = [
-  "Bugün bizim için çok özel bir gün. Hem senin doğum günün hem de tam 1 yıldır hayatımda olduğun, birlikte yürüdüğümüz o güzel yolculuğun başlangıç yıldönümü. Sana nasıl teşekkür etsem, hangi kelimelerle sevgimi anlatsam bilmiyorum. Hayatıma girdiğin o ilk günden beri her şey daha renkli, daha anlamlı ve daha huzurlu. Senin gülüşünle sabahlarım aydınlanıyor, sesinle günüm güzelleşiyor. Varlığın bana güven veriyor, kalbime dokunduğun her an içimi sımsıcak bir sevgi sarıyor ❤. Bazen sadece yanımda olman bile yetiyor iyi hissetmeme. Seninle geçirdiğim her dakika, her an, benim için bir ömre bedel. Birlikte güldük, birlikte sustuk, birlikte büyüdük. Seninle bir yıl geçmiş ama sanki bir ömür gibi dolu dolu, anlamlı ve gerçekti. Seninle nice senelere ulaşmak, hayalini kurduğumuz o geleceği adım adım inşa etmek istiyorum. Doğum günün kutlu olsun aşkım, iyi ki doğdun, iyi ki varsın, iyi ki benimlesin ❤. Seni her şeyden çok seviyorum.
-",
-  "Seninle geçirdiğim bu bir yıl, bana gerçek sevgiyi, sadakati ve huzuru öğretti. Her tartışmamızda bile daha çok bağlandım sana, her gülüşünde bir kez daha âşık oldum. Bana gösterdiğin sabır, verdiğin sevgi, kurduğun o güvenli alan için sonsuz teşekkür ederim. Seninle geçirdiğim zamanlarda kendimi daha çok tanıdım, seninle birlikte kendimi de sevmeyi öğrendim. Kalbimin en derin yerinde taşıyorum seni, öyle bir yer ki kimse dokunamaz, kimse silemez. Hayat bazen zor, bazen yorucu, ama sen yanımdayken her şey kolay geliyor 🍯. Omzuna yaslandığımda dünyanın tüm yükü hafifliyor, gözlerinin içine baktığımda geleceği görüyorum. Ve inan bana, seninle kurduğum hayallerin bir tanesinden bile vazgeçmeye hiç niyetim yok. Ne yaşarsak yaşayalım, ben hep senin yanında olacağım; elini tuttuğum ilk gün verdiğim sözü tutacağım: seni hep seveceğim, koruyacağım, destekleyeceğim ❤.
-",
-  "Sen sadece sevgilim değil, aynı zamanda en yakın dostum, sırdaşım, hayat ortağımsın. Birlikte öğrendik birbirimizi sevmeyi, anlamayı, sarılmayı. Senin gözlerindeki ışığı gördüğümde kendimi en doğru yerde hissediyorum. İyi ki seni tanımışım, iyi ki kalbimde sana yer açmışım. Bu yıl dönümümüz ve doğum günün, bizim için bir başlangıç sadece. Daha yaşayacak o kadar çok anımız, paylaşacak o kadar çok gülüşümüz var ki. Seninle her geçen gün biraz daha tamamlanıyorum. Seni çok seviyorum ve her geçen gün daha da çok seveceğim ❤.
-",
+/* İlerleme çubuğu (kullanıcı sürüklerse) */
+progressBar.oninput = e => {
+  if(audio.duration) audio.currentTime = (e.target.value/100)*audio.duration;
+};
+
+/* Zaman & ilerleme güncelle */
+audio.ontimeupdate = () => {
+  if(audio.duration){
+    curTimeLabel.textContent = fmt(audio.currentTime);
+    progressBar.value = (audio.currentTime/audio.duration)*100;
+  }
+};
+audio.onloadedmetadata = () => {
+  durLabel.textContent = fmt(audio.duration || 0);
+  curTimeLabel.textContent = "0:00";
+  progressBar.value = 0;
+};
+
+/* █ PHOTO SLIDESHOW █ */
+let currentPhoto = 0;
+setInterval(()=>{
+  currentPhoto = (currentPhoto+1)%photoUrls.length;
+  document.getElementById("photo").src = photoUrls[currentPhoto];
+},5000);
+
+/* █ NOTE PANEL █ */
+function showNote(){ document.getElementById("note-panel").classList.add("show"); }
+function hideNote(){ document.getElementById("note-panel").classList.remove("show"); }
+
+/* █ BIG HEART █ */
+const heartTexts = {
+  buton1:"Seninle her şey daha güzel 💕",
+  buton2:"Kalbim hep seninle 💓",
+  buton3:"Birlikte nice yıllara 🥰"
+};
+function showBigHeart(id){
+  document.getElementById("big-heart-text").textContent = heartTexts[id];
+  document.getElementById("big-heart").classList.add("show");
+}
+function hideBigHeart(){ document.getElementById("big-heart").classList.remove("show"); }
+
+/* █ FLOATING LOVE BUBBLES (30 farklı cümle) █ */
+const messages=[
+  "Seni çok seviyorum!","İyi ki varsın ❤️","Seninle her şey daha güzel.",
+  "Gülüşün içimi ısıtıyor 💫","Birlikte geçen zaman en güzel hediye 🎁",
+  "Aşkınla yanıyorum 🔥","Kalbim seninle atıyor 💓","Sen benim mucizemsin ✨",
+  "Gözlerin yıldız gibi parlıyor 🌟","Seninle her gün bayram 🎉",
+  "Yüzünü görmek huzur veriyor 😊","Senin adın mutluluk 💖",
+  "Sensiz hayat eksik kalır...","Seninle olmak cennet gibi 🌈",
+  "Aşkımız hiç bitmesin 💞","Gönlüm hep seninle 🕊️",
+  "Senin varlığın yeter 💐","İçimde kelebekler uçuşuyor 🦋",
+  "Sen en güzel hikayemsin 📖","Yüreğin çok güzel 💝",
+  "Senin sesin huzur 💬","İyi ki tanıdım seni 🥰",
+  "Kalbim sana ait 🫀","Sevginle büyüyorum 🌱",
+  "Hayatımda olduğun için şükürler olsun 🙏","Senin gülüşün dünyalara bedel 😊",
+  "Gözlerin derya deniz 🌊","Sensiz bir gün eksik bir gün 😔",
+  "İyi ki sen 💘","Sonsuz aşkımız daim olsun ♾️"
 ];
 
-function showBigBalloon(index) {
-  document.getElementById('balloon-text').innerText = balloonTexts[index];
-  document.getElementById('big-balloon').style.display = 'flex';
+function createBubble(){
+  const b=document.createElement("div");
+  b.className="bubble";
+  b.textContent=messages[Math.floor(Math.random()*messages.length)];
+  b.style.left=Math.random()*90+"%";
+  b.style.animationDuration="3s";
+  document.getElementById("bubbles-container").appendChild(b);
+  setTimeout(()=>b.remove(),3000);
 }
-
-function hideBigBalloon() {
-  document.getElementById('big-balloon').style.display = 'none';
-}
+setInterval(createBubble,3000);
