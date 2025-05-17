@@ -43,7 +43,7 @@ const heartMessages = [
   "Aşkımızı kimse silemez 🛡️",
   "Seninle hayatım tamamlandı 🎯",
   "Kalbim hep senin yanında 💗",
-  "Sen benim en güzel baharımsın 🌷"
+  "Sen benim en güzel baharımsın 🌷",
 ];
 
 function createHeart() {
@@ -58,7 +58,7 @@ function createHeart() {
   }, 3000);
 }
 
-setInterval(createHeart, 1000);
+setInterval(createHeart, 100);
 
 // Heart Style
 const style = document.createElement('style');
