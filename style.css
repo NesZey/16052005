@@ -15,6 +15,48 @@ h1 {
   color: #b93b5a;
 }
 
+/* === MÜZİK ÇUBUĞU === */
+.music-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #ffe4f0;
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 640px;
+  margin: 12px auto;
+  box-shadow: 0 2px 6px rgba(185,59,90,.4);
+}
+
+.music-player .btn{
+  background:#b93b5a;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:6px 10px;
+  font-size:18px;
+  cursor:pointer;
+}
+.music-player .btn:hover{background:#e55c82;}
+
+#progress{
+  flex:1;
+  height:4px;
+  cursor:pointer;
+}
+#volume{
+  width:80px;
+}
+#track-name{
+  flex-basis:100%;
+  text-align:center;
+  font-weight:bold;
+  margin-top:6px;
+  color:#b93b5a;
+}
+
+
 /* Müzik paneli */
 .music-player {
   display: flex;
